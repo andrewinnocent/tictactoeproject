@@ -15,9 +15,15 @@ const gameBoard = ['', '', '', '', '', '', '', '', '']
 // When a player clicks on a specific block (represented by the number/index),
 // the return will be an X or O. Always start with X.
 
-const play = function () {
+// const play = function () {
 
-}
+$(() => {
+  $('#0').click(function () {
+    console.log('Box was clicked')
+  })
+})
+
+// }
 
 module.export = {
   gameBoard

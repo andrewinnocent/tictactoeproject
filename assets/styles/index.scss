@@ -1,9 +1,13 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+$lightgrey: #d3d3d3;
+$red: #f00;
+
 .col-xs-4 {
-  background-color: lightgrey;
-  border: 6px solid red;
+  background-color: $lightgrey;
+  border: 6px solid $red;
   padding: 5%;
   text-align: center;
 }

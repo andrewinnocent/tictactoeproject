@@ -1,2 +1,9 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+.col-xs-4 {
+  background-color: lightgrey;
+  border: 6px solid red;
+  padding: 5%;
+  text-align: center;
+}

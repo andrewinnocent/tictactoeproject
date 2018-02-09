@@ -17,12 +17,6 @@ const gameBoard = ['', '', '', '', '', '', '', '', '']
 
 // const play = function () {
 
-$(() => {
-  $('#0').click(function () {
-    console.log('Box was clicked')
-  })
-})
-
 // }
 
 module.export = {

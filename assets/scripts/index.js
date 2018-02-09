@@ -15,5 +15,6 @@ $(() => {
 // require('./example')
 
 $(() => {
+  clickEvents.boxSelect()
   clickEvents.addHandlers()
 })

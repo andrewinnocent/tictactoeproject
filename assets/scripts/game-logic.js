@@ -3,7 +3,6 @@
 // Files to be required(if any):
 
 // Create game board
-
 // Array where each index is where a user can position an X or O
 const gameBoard = ['', '', '', '', '', '', '', '', '']
 
@@ -12,13 +11,87 @@ const gameBoard = ['', '', '', '', '', '', '', '', '']
 // 3 4 5
 // 6 7 8
 
-// When a player clicks on a specific block (represented by the number/index),
-// the return will be an X or O. Always start with X.
+// Write a function that places a token in a specific index [WORKS] Need to connect to clicks
+const addToBoard = function (index, token) {
+  gameBoard[index] = token
+  console.log(gameBoard)
+}
 
+// Equate index with a click in a specific area
 // const play = function () {
-
+//   $('#2').on('click', function () {
+//     $('#2').text('X')
+//     console.log('Box 2 was played')
+//   })
 // }
 
-module.export = {
-  gameBoard
+// 6. Win options
+const winOptions = [[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [6, 4, 2]]
+
+// To show where X & O are played
+const playerX = []
+const playerO = []
+
+function test () {
+  for (let i = 0; i < gameBoard.length; i++) {
+    if (gameBoard[i] === 'X') {
+      playerX.push(i)
+      console.log('X is here!')
+    } else {
+      console.log('X in not here!')
+    }
+  }
+}
+
+// I'm trying to compare playerX array to the first element in winOptions that matches.
+function xWon () {
+  for (let i = 0; i < winOptions.length; i++) {
+    if (winOptions[i] === playerX) {
+      console.log('X Won!')
+    } else {
+      console.log('winOptions is ' + winOptions[i] + 'playerX is ' + playerX)
+    }
+  }
+}
+
+// Get array of playerX and compare each index to the win condition.
+// Are winOptions sub array indexes in the playerX array?
+function xWon2 () {
+  for (let i = 0; i < winOptions.length; i++) {
+    winOptions[i]
+  }
+}
+// addToBoard(0, 'X')
+// console.log(winOptions.find(xWon))
+
+// function xWon () {
+//   for (let i = 0; i < winOptions.length; i++)
+//     if (indexX === )
+// }
+//   if (gameBoard === winOptions.win1) {
+//     console.log('I won, Baby!')
+//   } else {
+//     console.log('Whomp, whomp...')
+//   }
+// }
+
+/*
+1. Start with a clear board
+2. Player 1 begins first ('X' token)
+  a. Index selected cannot be played on again
+3. Switch player function
+4. Player 2 plays ('O' token)
+  a. Index selected cannot be played on again
+5. Repeat 2-4
+6. Three of the same tokens in a row/diag wins
+  a. 8 possible win options
+  b. Draw result
+  c. Start function to determine win from first play
+  d. Board reset button when game done
+7. Store w/l info for player 1
+
+*/
+
+module.exports = {
+
 }

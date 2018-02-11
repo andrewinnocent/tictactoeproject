@@ -22,6 +22,10 @@ const onSignIn = function (event) {
   api.signIn(data)
 }
 
+// Add "Play" button to start a game with a clear gameBoard.
+
+// Add a "Reset" button to start a game over.
+
 // addHandlers for grid spaces clicked on
 const boxSelect = () => {
   $('#0').click(function () {

@@ -49,61 +49,60 @@ const boxSelect = () => {
       gameBoard[this.id] = 'O'
     }
     console.log(gameBoard)
+    checkForWin()
     turn++ // adds 1 to the turn being played
   })
 }
 
-// $('#1').click(function () {
-//   console.log('Box 1 was clicked')
-// })
-// $('#2').click(function () {
-//   console.log('Box 2 was clicked')
-// })
-// $('#3').click(function () {
-//   console.log('Box 3 was clicked')
-// })
-// $('#4').click(function () {
-//   console.log('Box 4 was clicked')
-// })
-// $('#5').click(function () {
-//   console.log('Box 5 was clicked')
-// })
-// $('#6').click(function () {
-//   console.log('Box 6 was clicked')
-// })
-// $('#7').click(function () {
-//   console.log('Box 7 was clicked')
-// })
-// $('#8').click(function () {
-//   console.log('Box 8 was clicked')
-// })
+// checks for wins
+const checkForWin = function () {
+  if (// 0, 1, 2
+    (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2] && gameBoard[0] === 'X') ||
+    // 0, 3, 6
+    (gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6] && gameBoard[0] === 'X') ||
+    // 0, 4, 8
+    (gameBoard[0] === gameBoard[4] && gameBoard[0] === gameBoard[8] && gameBoard[0] === 'X') ||
+    // 1, 4, 7
+    (gameBoard[1] === gameBoard[4] && gameBoard[1] === gameBoard[7] && gameBoard[1] === 'X') ||
+    // 2, 5, 8
+    (gameBoard[2] === gameBoard[5] && gameBoard[2] === gameBoard[8] && gameBoard[2] === 'X') ||
+    // 2, 4, 6
+    (gameBoard[2] === gameBoard[4] && gameBoard[2] === gameBoard[6] && gameBoard[2] === 'X') ||
+    // 3, 4, 5
+    (gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5] && gameBoard[3] === 'X') ||
+    // 6, 7, 8
+    (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'X')) {
+    console.log('X won!')
+  } else if (// 0, 1, 2
+    (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2] && gameBoard[0] === 'O') ||
+    // 0, 3, 6
+    (gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6] && gameBoard[0] === 'O') ||
+    // 0, 4, 8
+    (gameBoard[0] === gameBoard[4] && gameBoard[0] === gameBoard[8] && gameBoard[0] === 'O') ||
+    // 1, 4, 7
+    (gameBoard[1] === gameBoard[4] && gameBoard[1] === gameBoard[7] && gameBoard[1] === 'O') ||
+    // 2, 5, 8
+    (gameBoard[2] === gameBoard[5] && gameBoard[2] === gameBoard[8] && gameBoard[2] === 'O') ||
+    // 2, 4, 6
+    (gameBoard[2] === gameBoard[4] && gameBoard[2] === gameBoard[6] && gameBoard[2] === 'O') ||
+    // 3, 4, 5
+    (gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5] && gameBoard[3] === 'O') ||
+    // 6, 7, 8
+    (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'O')) {
+    console.log('O won!')
+  } else if (gameBoard.includes('') === false) {
+    console.log('Draw game')
+  } else {
+    console.log('Keep playing')
+  }
+}
 
 const addHandlers = () => {
   $('#onSignUp').on('submit', onSignUp)
   $('#onSignIn').on('submit', onSignIn)
 }
 
-// const playerturns = function () {
-//   if (gameBoard[0] === '') {
-//     $(id).on('click', 'X')
-//   }
-// }
-
-// [WORKS!] This denotes player turns
-// let turn = 0
-// const onTurn = function () {
-//   $('.row').on('click', function () {
-//     if (turn % 2 === 0) {
-//       console.log('X')
-//     } else {
-//       console.log('O')
-//     }
-//     turn++
-//   })
-// }
-
 module.exports = {
   boxSelect,
-  addHandlers
-  // onTurn
+  addHandlers,
 }

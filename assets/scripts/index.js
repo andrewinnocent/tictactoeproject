@@ -17,5 +17,4 @@ $(() => {
 $(() => {
   clickEvents.boxSelect()
   clickEvents.addHandlers()
-  // clickEvents.onTurn()
 })

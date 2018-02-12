@@ -11,10 +11,27 @@ const gameBoard = ['', '', '', '', '', '', '', '', '']
 // 3 4 5
 // 6 7 8
 
-// Write a function that places a token in a specific index [WORKS] Need to connect to clicks
+// A function that places a token in a specific index [WORKS] Need to connect to clicks
 const addToBoard = function (index, token) {
   gameBoard[index] = token
   console.log(gameBoard)
+}
+
+// const playerturns = function () {
+//   if (gameBoard[0] === '') {
+//     $(id).on('click', 'X')
+//   }
+// }
+
+let turn = 0
+const onTurn = function () {
+  $('.row').on('click', function () {
+    if (turn % 2 === 0) {
+      console.log('X')
+    } else {
+      console.log('O')
+    }
+  })
 }
 
 // Equate index with a click in a specific area
@@ -26,16 +43,25 @@ const addToBoard = function (index, token) {
 // }
 
 // 6. Win options
-const winOptions = [[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [6, 4, 2]]
+const winOptions = {
+  one: [0, 3, 6],
+  two: [1, 4, 7],
+  three: [2, 5, 8],
+  four: [0, 1, 2],
+  five: [3, 4, 5],
+  six: [6, 7, 8],
+  seven: [0, 4, 8],
+  eight: [6, 4, 2]
+}
 
 // To show where X & O are played
-const playerX = []
-const playerO = []
+// Since X plays first, the turns are even indexes. Odd for O.
+const plays = []
 
 function test () {
   for (let i = 0; i < gameBoard.length; i++) {
     if (gameBoard[i] === 'X') {
-      playerX.push(i)
+      plays.push(i)
       console.log('X is here!')
     } else {
       console.log('X in not here!')
@@ -43,13 +69,13 @@ function test () {
   }
 }
 
-// I'm trying to compare playerX array to the first element in winOptions that matches.
+// I'm trying to compare plays array to the first element in winOptions that matches.
 function xWon () {
   for (let i = 0; i < winOptions.length; i++) {
-    if (winOptions[i] === playerX) {
+    if (winOptions[i] === plays) {
       console.log('X Won!')
     } else {
-      console.log('winOptions is ' + winOptions[i] + 'playerX is ' + playerX)
+      console.log('winOptions is ' + winOptions[i] + 'playerX is ' + plays)
     }
   }
 }

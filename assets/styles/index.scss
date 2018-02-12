@@ -4,10 +4,11 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 $lightgrey: #d3d3d3;
 $red: #f00;
+$logo-color: #398cff;
 
 .col-xs-4 {
   background-color: $lightgrey;
   border: 6px solid $red;
-  padding: 5%;
+  padding-top: 12%;
   text-align: center;
 }

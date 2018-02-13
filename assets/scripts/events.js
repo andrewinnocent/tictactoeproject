@@ -39,19 +39,56 @@ const onSignIn = function (event) {
 const gameBoard = ['', '', '', '', '', '', '', '', '']
 
 let turn = 0
+// const boxSelect = () => {
+//   $('.col-xs-4').click(function () { // applies the click method to a specific grid space (div)
+//     if ((turn % 2 === 0) && ($(this.id).text() === true)) { // even turns are X, odd turns are O
+//       $(this).text('X') // "this" is the grid space clicked on and X is added to it
+//       gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
+//     } else if ((turn % 2 === 1) && ($(this.id).text() === true)) {
+//       $(this).text('O')
+//       gameBoard[this.id] = 'O'
+//     } else {
+//       document.getElementById(this.id).disabled = true
+//     }
+//     console.log(gameBoard)
+//     checkForWin()
+//     turn++ // adds 1 to the turn being played
+//   })
+// }
+
+// const boxSelect = () => {
+//   $('.col-xs-4').click(function () { // applies the click method to a specific grid space (div)
+//     if (turn % 2 === 0) { // even turns are X, odd turns are O
+//       $(this).text('X') // "this" is the grid space clicked on and X is added to it
+//       gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
+//     } else {
+//       $(this).text('O')
+//       gameBoard[this.id] = 'O'
+//     }
+//     console.log(gameBoard)
+//     checkForWin()
+//     turn++ // adds 1 to the turn being played
+//   })
+// }
+
 const boxSelect = () => {
-  $('.col-xs-4').click(function () { // applies the click method to a specific grid space (div)
-    if (turn % 2 === 0) { // even turns are X, odd turns are O
-      $(this).text('X') // "this" is the grid space clicked on and X is added to it
-      gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
-    } else {
-      $(this).text('O')
-      gameBoard[this.id] = 'O'
-    }
-    console.log(gameBoard)
-    checkForWin()
-    turn++ // adds 1 to the turn being played
-  })
+  for (let i = 0; i < gameBoard.length; i++) {
+    $('#' + i).click(function () { // applies the click method to a specific grid space (div)
+      if (turn % 2 === 0) { // even turns are X, odd turns are O
+        $(this).text('X') // "this" is the grid space clicked on and X is added to it
+        gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
+        console.log(this)
+        $(this).attr('disabled', true)
+      } else {
+        $(this).text('O')
+        gameBoard[this.id] = 'O'
+        $(this).attr('disabled', true)
+      }
+      console.log(gameBoard)
+      checkForWin()
+      turn++ // adds 1 to the turn being played
+    })
+  }
 }
 
 // checks for wins
@@ -73,6 +110,9 @@ const checkForWin = function () {
     // 6, 7, 8
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'X')) {
     console.log('X won!')
+    $('.table-button').attr('disabled', true)
+    $('#game-message').text('X wins!')
+    $('#game-message').css('background-color', 'blue')
   } else if (// 0, 1, 2
     (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2] && gameBoard[0] === 'O') ||
     // 0, 3, 6
@@ -90,12 +130,19 @@ const checkForWin = function () {
     // 6, 7, 8
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'O')) {
     console.log('O won!')
+    $('.table-button').attr('disabled', true)
+    $('#game-message').text('O wins!')
+    $('#game-message').css('background-color', 'blue')
   } else if (gameBoard.includes('') === false) {
     console.log('Draw game')
+    $('#game-message').text('Draw game!')
+    $('#game-message').css('background-color', '#ff00ff')
   } else {
     console.log('Keep playing')
   }
 }
+
+// How to block a space selected??
 
 const addHandlers = () => {
   $('#onSignUp').on('submit', onSignUp)
@@ -104,5 +151,5 @@ const addHandlers = () => {
 
 module.exports = {
   boxSelect,
-  addHandlers,
+  addHandlers
 }

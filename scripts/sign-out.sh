@@ -2,7 +2,12 @@
 
 # sh scripts/sign-out.sh
 
-curl   --include  --request DELETE "http://tic-tac-toe.wdibos.com/sign-out/:{$ID}"
+curl "http://tic-tac-toe.wdibos.com/sign-out/{$ID}" \
+  --include \
+  --request DELETE \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+
 
 
 echo

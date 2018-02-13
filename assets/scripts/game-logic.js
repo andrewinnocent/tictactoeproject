@@ -70,23 +70,23 @@ function test () {
 }
 
 // I'm trying to compare plays array to the first element in winOptions that matches.
-function xWon () {
-  for (let i = 0; i < winOptions.length; i++) {
-    if (winOptions[i] === plays) {
-      console.log('X Won!')
-    } else {
-      console.log('winOptions is ' + winOptions[i] + 'playerX is ' + plays)
-    }
-  }
-}
+// function xWon () {
+//   for (let i = 0; i < winOptions.length; i++) {
+//     if (winOptions[i] === plays) {
+//       console.log('X Won!')
+//     } else {
+//       console.log('winOptions is ' + winOptions[i] + 'playerX is ' + plays)
+//     }
+//   }
+// }
 
 // Get array of playerX and compare each index to the win condition.
 // Are winOptions sub array indexes in the playerX array?
-function xWon2 () {
-  for (let i = 0; i < winOptions.length; i++) {
-    winOptions[i]
-  }
-}
+// function xWon2 () {
+//   for (let i = 0; i < winOptions.length; i++) {
+//     winOptions[i]
+//   }
+// }
 // addToBoard(0, 'X')
 // console.log(winOptions.find(xWon))
 

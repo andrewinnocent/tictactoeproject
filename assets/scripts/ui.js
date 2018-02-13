@@ -27,6 +27,7 @@ const signInFailure = function (error) {
   $('#message').css('background-color', 'red')
   console.log(error)
 }
+
 // Show relevant buttons based upon sign-in state. E.g., sign-out button viewable
 // only when signed-in, etc.
 

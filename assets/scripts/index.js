@@ -17,5 +17,5 @@ $(() => {
 $(() => {
   clickEvents.boxSelect()
   clickEvents.addHandlers()
-  clickEvents.boardLocked() // starts the board locked until signed in
+  // clickEvents.boardHide() // starts the board hidden until signed in
 })

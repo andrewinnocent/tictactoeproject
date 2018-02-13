@@ -6,34 +6,35 @@ $lightgrey: #d3d3d3;
 $red: #f00;
 $logo-color: #398cff;
 
-.col-xs-4 {
-  background-color: $lightgrey;
-  border: 6px solid $red;
-  padding-top: 12%;
-  text-align: center;
-}
+// .col-xs-4 {
+//   background-color: $lightgrey;
+//   border: 6px solid $red;
+//   padding-top: 12%;
+//   text-align: center;
+// }
 
 body {
   text-align: center;
 }
 
-.table-button {
-  height: 100px;
-  width: 100px;
+.game-board {
+  height: 270px;
+  margin: auto;
+  width: 270px;
 }
 
-.container {
-  position: relative;
+tr {
+  border: 1px solid $logo-color;
+  height: 90px;
+  width: 90px;
 }
 
-table {
-  align-content: center;
-  border: 3px solid $logo-color;
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 50%;
+td {
+  border: 1px solid $logo-color;
+  height: 30px;
+  width: 30px;
 }
 
-.table-row {
-  padding: 20px;
+.new-game {
+  margin: 30px;
 }

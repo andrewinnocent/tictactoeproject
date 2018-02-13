@@ -3,11 +3,12 @@
 const api = require('./api')
 const getFormFields = require('../../lib/get-form-fields')
 const ui = require('./ui')
+const store = require('./store')
 
 // Make messages disappear after 3-5 secs (desired)
-const boardLocked = function () {
-  $('.table-button').attr('disabled', true)
-  $('#4').text('Log In to Play!').css('font-weight', 'bold')
+const boardHide = function () {
+  $('.game-board').hide()
+  // $('#4').text('Log In to Play!').css('font-weight', 'bold')
 }
 
 const onSignUp = function (event) {
@@ -15,7 +16,6 @@ const onSignUp = function (event) {
   $('#sign-up').modal('hide')
   const data = getFormFields(this)
   console.log('Data is ', data)
-
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
@@ -25,8 +25,9 @@ const onSignIn = function (event) {
   event.preventDefault()
   $('#sign-in').modal('hide')
   const data = getFormFields(this)
-  $('.table-button').attr('disabled', false).css('font-weight', 'normal') // unlocks the board when signed in
-  $('#4').text('')
+  $('.game-board').show()
+  // $('.box').on('click').css('font-weight', 'normal') // unlocks the board when signed in
+  // $('#4').text('') // to clear the cell
   console.log('Data is ', data)
 
   api.signIn(data)
@@ -48,6 +49,11 @@ const onChangePassword = function (event) {
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
+}
+
+const onNewGame = () => {
+  console.log('what for?')
+  api.newGame()
 }
 
 const addHandlers = () => {
@@ -74,11 +80,12 @@ const boxSelect = () => {
         $(this).text('X') // "this" is the grid space clicked on and X is added to it
         gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
         console.log(this)
-        $(this).attr('disabled', true) // disables button once selected
+        $(this).off('click')
+        // $(this).attr('disabled', true) // disables button once selected
       } else {
         $(this).text('O')
         gameBoard[this.id] = 'O'
-        $(this).attr('disabled', true)
+        $(this).off('click')
       }
       console.log(gameBoard)
       checkForWin()
@@ -146,19 +153,21 @@ const checkForWin = function () {
 }
 
 // Game restart [WORKS]
-$('#restart').on('click', function () {
+$('#new-game').on('click', function () {
   for (let i = 0; i < gameBoard.length; i++) {
     $('#' + i).text('') // clears X or O in each button
     $('.table-button').attr('disabled', false) // allows buttons to be clicked on again
     gameBoard[i] = '' // clears array of X & O, back to empty string
     turn = 0 // resets turn to start with X
+    onNewGame()
   }
   console.log(gameBoard)
   console.log('reset!')
+  console.log(store.user.token)
 })
 
 module.exports = {
   boxSelect,
   addHandlers,
-  boardLocked
+  boardHide
 }

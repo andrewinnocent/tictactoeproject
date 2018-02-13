@@ -17,4 +17,5 @@ $(() => {
 $(() => {
   clickEvents.boxSelect()
   clickEvents.addHandlers()
+  clickEvents.boardLocked() // starts the board locked until signed in
 })

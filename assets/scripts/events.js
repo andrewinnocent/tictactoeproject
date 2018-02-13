@@ -5,6 +5,11 @@ const getFormFields = require('../../lib/get-form-fields')
 const ui = require('./ui')
 
 // Make messages disappear after 3-5 secs (desired)
+const boardLocked = function () {
+  $('.table-button').attr('disabled', true)
+  $('#4').text('Log In to Play!').css('font-weight', 'bold')
+}
+
 const onSignUp = function (event) {
   event.preventDefault()
   $('#sign-up').modal('hide')
@@ -20,6 +25,8 @@ const onSignIn = function (event) {
   event.preventDefault()
   $('#sign-in').modal('hide')
   const data = getFormFields(this)
+  $('.table-button').attr('disabled', false) // unlocks the board when signed in
+  $('#4').text('')
   console.log('Data is ', data)
 
   api.signIn(data)
@@ -62,6 +69,11 @@ const boxSelect = () => {
   }
 }
 
+// Tally wins/losses
+
+let xWinTally = 1
+let oWinTally = 1
+
 // checks for wins & locks board when game done [WORKS]
 const checkForWin = function () {
   if (// 0, 1, 2
@@ -81,6 +93,7 @@ const checkForWin = function () {
     // 6, 7, 8
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'X')) {
     console.log('X won!')
+    $('#x-score').text(xWinTally++)
     $('.table-button').attr('disabled', true) // disables board if X wins
     $('#game-message').text('X wins!')
     $('#game-message').css('background-color', 'blue')
@@ -100,6 +113,7 @@ const checkForWin = function () {
     (gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5] && gameBoard[3] === 'O') ||
     // 6, 7, 8
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'O')) {
+    $('#o-score').text(oWinTally++)
     console.log('O won!')
     $('.table-button').attr('disabled', true) // disables board if O wins
     $('#game-message').text('O wins!')
@@ -125,11 +139,8 @@ $('#restart').on('click', function () {
   console.log('reset!')
 })
 
-// Store wins/losses
-const wins = []
-const losses = []
-let winTally = 0
 module.exports = {
   boxSelect,
-  addHandlers
+  addHandlers,
+  boardLocked
 }

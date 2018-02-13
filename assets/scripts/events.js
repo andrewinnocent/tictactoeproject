@@ -25,7 +25,7 @@ const onSignIn = function (event) {
   event.preventDefault()
   $('#sign-in').modal('hide')
   const data = getFormFields(this)
-  $('.table-button').attr('disabled', false) // unlocks the board when signed in
+  $('.table-button').attr('disabled', false).css('font-weight', 'normal') // unlocks the board when signed in
   $('#4').text('')
   console.log('Data is ', data)
 

@@ -22,6 +22,10 @@ body {
   width: 100px;
 }
 
+.container {
+  position: relative;
+}
+
 table {
   align-content: center;
   border: 3px solid $logo-color;

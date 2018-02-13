@@ -34,9 +34,27 @@ const onSignIn = function (event) {
     .catch(ui.signInFailure)
 }
 
+const onSignOut = function (event) {
+  event.preventDefault()
+  api.signOut()
+    .then(ui.signOutSuccess)
+    .catch(ui.signOutFailure)
+}
+
+const onChangePassword = function (event) {
+  event.preventDefault()
+  $('#change-password').modal('hide')
+  const data = getFormFields(event.target)
+  api.changePassword(data)
+    .then(ui.changePasswordSuccess)
+    .catch(ui.changePasswordFailure)
+}
+
 const addHandlers = () => {
   $('#onSignUp').on('submit', onSignUp)
   $('#onSignIn').on('submit', onSignIn)
+  $('#onSignOut').click(onSignOut)
+  $('#onChangePassword').on('submit', onChangePassword)
 }
 
 // When signed in:

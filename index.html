@@ -22,66 +22,96 @@
 
         <!-- Alert messages for sign-up/in/out/changepswd actions -->
         <p class="navbar-text" id="message"></p>
+
+        <!-- Button trigger for change-password modal -->
+        <button type="button" id="password-button"class="btn btn-warning navbar-btn" data-toggle="modal" data-target="#change-password">
+          Change Password
+        </button>
+        <!-- Modal change-password -->
+        <div class="modal fade" id="change-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="change-password-label">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="form-inline" id="onChangePassword">
+                  <div class="form-group">
+                    <label for="inputPassword">Old Password</label>
+                    <input type="email" class="form-control" name="passwords[old]" placeholder="old password">
+                    <label for="inputPassword">New Password</label>
+                    <input type="password" class="form-control" name="passwords[new]" placeholder="new password">
+                  <button type="submit" class="btn btn-default">Change Password</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+        </div>
         <!-- Button trigger for sign-in modal -->
-        <span class="label label-info">Change Password</span>
         <button type="button" id="log-in" class="btn btn-inverse navbar-btn" data-toggle="modal" data-target="#sign-in">
           Log In
         </button>
+        <!-- Modal sign-in -->
+        <div class="modal fade" id="sign-in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="sign-in-label">Log In to Play!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="form-inline" id="onSignIn">
+                  <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" name="credentials[email]" placeholder="your@email.com">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" name="credentials[password]" placeholder="password">
+                  <button type="submit" class="btn btn-default">Log In!</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+        </div>
         <!-- Button trigger for sign-up modal -->
         <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#sign-up">
           Sign Up
         </button>
+        <!-- Modal sign-up -->
+        <div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="sign-up-label">Sign Up to Play!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="form-inline" id="onSignUp">
+                  <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" name="credentials[email]" placeholder="example@email.com">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" name="credentials[password]" placeholder="password">
+                  <button type="submit" class="btn btn-default">Sign Up!</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sign out button -->
+        <button type="button" id="onSignOut" class="btn btn-danger">Sign Out</button>
       </div>
     </div>
   </nav>
-  <!-- Modal -->
-  <div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="sign-up-label">Sign Up to Play!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="form-inline" id="onSignUp">
-            <div class="form-group">
-              <label for="inputEmail">Email</label>
-              <input type="email" class="form-control" name="credentials[email]" placeholder="example@email.com">
-              <label for="inputPassword">Password</label>
-              <input type="password" class="form-control" name="credentials[password]" placeholder="password">
-            <button type="submit" class="btn btn-default">Sign Up!</button>
-            </div>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="sign-in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="sign-in-label">Log In to Play!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form-inline" id="onSignIn">
-          <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" name="credentials[email]" placeholder="your@email.com">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" name="credentials[password]" placeholder="password">
-          <button type="submit" class="btn btn-default">Log In!</button>
-          </div>
-        </form>
-    </div>
-  </div>
-</div>
-</div>
 
 <!-- Game -->
       <h1>Tic-Tac-Toe!</h1>

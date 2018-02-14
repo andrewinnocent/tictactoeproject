@@ -9,7 +9,6 @@ const store = require('./store')
 const signUpSuccess = function (data) {
   $('#message').text('Signed up successfully')
   $('#message').css('background-color', '#8fff90')
-  console.log(data)
 }
 
 const signUpFailure = function (error) {
@@ -21,7 +20,6 @@ const signUpFailure = function (error) {
 const signInSuccess = function (data) {
   $('#message').text('Log In Successful')
   $('#message').css('background-color', '#8fff90')
-  console.log(data)
   store.user = data.user
 }
 
@@ -34,7 +32,6 @@ const signInFailure = function (error) {
 const signOutSuccess = function () {
   $('#message').text('Signed out successfully')
   $('#message').css('background-color', '#8fff90')
-  console.log('Signed out successfully!')
 }
 
 const signOutFailure = function (error) {
@@ -46,7 +43,6 @@ const signOutFailure = function (error) {
 const changePasswordSuccess = function () {
   $('#message').text('Changed password in successfully')
   $('#message').css('background-color', '#8fff90')
-  console.log('Changed password successfully')
 }
 
 const changePasswordFailure = function (error) {
@@ -58,7 +54,6 @@ const changePasswordFailure = function (error) {
 const createGame = function (data) {
   $('#message').text('Create Game Successful')
   $('#message').css('background-color', '#8fff90')
-  console.log(data)
   store.games = data.game
 }
 

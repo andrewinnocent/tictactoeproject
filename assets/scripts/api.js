@@ -6,7 +6,6 @@ const store = require('./store')
 // ajax requests to post the info input to the server (API). The API stores the
 // sign up information and returns what's been saved.
 const signUp = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
     method: 'POST',
@@ -29,7 +28,6 @@ const signIn = function (data) {
 }
 
 const signOut = function () {
-  console.log('signed out')
   return $.ajax({
     url: config.apiOrigin + '/sign-out/' + store.user.id,
     method: 'DELETE',

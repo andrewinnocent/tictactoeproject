@@ -66,6 +66,7 @@ const onChangePassword = function (event) {
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
+  $('#onChangePassword').get(0).reset()
 }
 
 const onNewGame = () => {
@@ -101,7 +102,7 @@ const boxSelect = () => {
       } else {
         $(this).text('O')
         gameBoard[this.id] = 'O'
-        // $(this).bind('click')
+        $(this).attr('disabled', true) // disables button once selected
       }
       console.log(gameBoard)
       checkForWin()
@@ -135,7 +136,7 @@ const checkForWin = function () {
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'X')) {
     console.log('X won!')
     $('#x-score').text(xWinTally++)
-    $('.table-button').attr('disabled', true) // disables board if X wins
+    $('.box').attr('disabled', true) // disables board if X wins
     $('#game-message').text('X wins!')
     $('#game-message').css('background-color', 'blue')
   } else if (// 0, 1, 2
@@ -156,7 +157,7 @@ const checkForWin = function () {
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'O')) {
     $('#o-score').text(oWinTally++)
     console.log('O won!')
-    $('.table-button').attr('disabled', true) // disables board if O wins
+    $('.box').attr('disabled', true) // disables board if O wins
     $('#game-message').text('O wins!')
     $('#game-message').css('background-color', 'blue')
   } else if (gameBoard.includes('') === false) {
@@ -172,8 +173,7 @@ const checkForWin = function () {
 $('#new-game').on('click', function () {
   for (let i = 0; i < gameBoard.length; i++) {
     $('#' + i).text('') // clears X or O in each button
-    $('.box').unbind('click')
-    // $('.table-button').attr('disabled', false) // allows buttons to be clicked on again
+    $('.box').attr('disabled', false) // allows buttons to be clicked on again
     gameBoard[i] = '' // clears array of X & O, back to empty string
     turn = 0 // resets turn to start with X
   }

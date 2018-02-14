@@ -58,7 +58,7 @@ const newGame = function () {
     method: 'POST',
     header: {
       contentType: 'application/json',
-      Authorization: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + store.games.token
     }
   })
 }

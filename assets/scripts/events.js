@@ -3,7 +3,7 @@
 const api = require('./api')
 const getFormFields = require('../../lib/get-form-fields')
 const ui = require('./ui')
-const store = require('./store')
+// const store = require('./store')
 
 // Make messages disappear after 3-5 secs (desired)
 const notSignedIn = function () {
@@ -86,14 +86,12 @@ const boxSelect = () => {
       if (turn % 2 === 0) { // even turns are X, odd turns are O
         $(this).text('X') // "this" is the grid space clicked on and X is added to it
         gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
-        console.log(this)
         $(this).attr('disabled', true) // disables button once selected
       } else {
         $(this).text('O')
         gameBoard[this.id] = 'O'
         $(this).attr('disabled', true) // disables button once selected
       }
-      console.log(gameBoard)
       checkForWin()
       turn++ // adds 1 to the turn being played
     })
@@ -148,7 +146,6 @@ const checkForWin = function () {
     $('#game-message').text('O wins!')
     $('#game-message').css('background-color', '#a5bcff')
   } else if (gameBoard.includes('') === false) {
-    console.log('Draw game')
     $('#game-message').text('Draw game!')
     $('#game-message').css('background-color', '#ff00ff')
   } else {
@@ -165,7 +162,6 @@ $('#new-game').on('click', function () {
     turn = 0 // resets turn to start with X
     $('#game-message').text('New Game Started!').css('background-color', 'yellow')
   }
-  console.log(gameBoard)
 })
 
 module.exports = {

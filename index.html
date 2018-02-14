@@ -80,7 +80,7 @@
         </div>
         </div>
         <!-- Button trigger for sign-up modal -->
-        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#sign-up">
+        <button type="button" id="signUp" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#sign-up">
           Sign Up
         </button>
         <!-- Modal sign-up -->
@@ -136,13 +136,16 @@
           <div class="col-xs-4"><button type="button" id="6" class="btn btn-secondary"></button></div>
           <div class="col-xs-4"><button type="button" id="7" class="btn btn-secondary"></button></div>
           <div class="col-xs-4"><button type="button" id="8" class="btn btn-secondary"></button></div> -->
-<div>
-<p>X wins <span id="x-score"></span></p>
-<p>O wins <span id="o-score"></span></p>
+<div id="scores">
+<p>X wins: <span id="x-score">0</span></p>
+<p>O wins: <span id="o-score">0</span></p>
 </div>
+
+<p id="subtitle"></p>
+
 <table class="game-board">
   <tr class="table-row">
-    <td id="0" class="box"></td>
+    <td id="0" class="box"><button type="button" class="btn btn-outline-primary">Primary</button></td>
     <td id="1" class="box"></td>
     <td id="2" class="box"></td>
   </tr>

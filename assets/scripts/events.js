@@ -6,9 +6,13 @@ const ui = require('./ui')
 const store = require('./store')
 
 // Make messages disappear after 3-5 secs (desired)
-const boardHide = function () {
+const notSignedIn = function () {
   $('.game-board').hide()
-  // $('#4').text('Log In to Play!').css('font-weight', 'bold')
+  $('.reset').hide()
+  $('#scores').hide()
+  $('#subtitle').show().text('Log In to Play!').css('font-size', '20px').css('color', '#529bff')
+  $('#password-button').hide()
+  $('#onSignOut').hide()
 }
 
 const onSignUp = function (event) {
@@ -19,13 +23,23 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
+  $('#onSignUp').get(0).reset()
 }
 
 const onSignIn = function (event) {
   event.preventDefault()
   $('#sign-in').modal('hide')
   const data = getFormFields(this)
+  $('#log-in').hide()
+  $('#signUp').hide()
+  $('#subtitle').hide()
   $('.game-board').show()
+  $('.reset').show()
+  $('#scores').show()
+  $('#password-button').show()
+  $('#onSignOut').show()
+  $('#onSignIn').get(0).reset()
+
   // $('.box').on('click').css('font-weight', 'normal') // unlocks the board when signed in
   // $('#4').text('') // to clear the cell
   console.log('Data is ', data)
@@ -40,6 +54,9 @@ const onSignOut = function (event) {
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
+  notSignedIn()
+  $('#log-in').show()
+  $('#signUp').show()
 }
 
 const onChangePassword = function (event) {
@@ -80,12 +97,11 @@ const boxSelect = () => {
         $(this).text('X') // "this" is the grid space clicked on and X is added to it
         gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
         console.log(this)
-        $(this).off('click')
-        // $(this).attr('disabled', true) // disables button once selected
+        $(this).attr('disabled', true) // disables button once selected
       } else {
         $(this).text('O')
         gameBoard[this.id] = 'O'
-        $(this).off('click')
+        // $(this).bind('click')
       }
       console.log(gameBoard)
       checkForWin()
@@ -156,18 +172,17 @@ const checkForWin = function () {
 $('#new-game').on('click', function () {
   for (let i = 0; i < gameBoard.length; i++) {
     $('#' + i).text('') // clears X or O in each button
-    $('.table-button').attr('disabled', false) // allows buttons to be clicked on again
+    $('.box').unbind('click')
+    // $('.table-button').attr('disabled', false) // allows buttons to be clicked on again
     gameBoard[i] = '' // clears array of X & O, back to empty string
     turn = 0 // resets turn to start with X
-    onNewGame()
   }
   console.log(gameBoard)
-  console.log('reset!')
   console.log(store.user.token)
 })
 
 module.exports = {
   boxSelect,
   addHandlers,
-  boardHide
+  notSignedIn
 }

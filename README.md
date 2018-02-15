@@ -5,7 +5,7 @@ My mindset throughout the project was, “Do your best, seek help when needed, a
 
 I started the project by working on some authentication as that was relatively fresh from what we learned that week. From there, I made several attempts at the game logic. Setting up the game board was easy, but everything else took much effort. White boarding helped plan out the events that make up the game. Translating the events to JavaScript was the most time-consuming part of the project for me.
 
-Overall, I’m pleased with the experience and got close to finishing all the requirements. Three weeks ago I barely knew what JavaScript was - so it’s a “win” for me!
+Overall, I’m pleased with the experience. Three weeks ago I barely knew what JavaScript was - so it’s a “win” for me!
 
 ## Technologies Used
 - HTML
@@ -43,7 +43,8 @@ These are the user stories that got me started:
 ## Game Logic/JS
 - Breaking it down step by step
 - Deciding what kind of function to use
-  - How to connect the actions to the win options (comparing an array to another array doesn’t work as I had hoped) Create an object with win options arrays? = this was a pain and ultimately didn’t happen. I just used if statements (nested) to determine winner on gameBoard.
+  - How to connect the actions to the win options (comparing an array to another array doesn’t work as I had hoped)
+  - Create an object with win options arrays? = this was a pain and ultimately didn’t happen. I just used if statements (nested) to determine winner on gameBoard.
 - Using a for loop to check wins provides issues (in this format):
 (gameBoard[i] === gameBoard[i + 1] && gameBoard[i] === gameBoard[i + 2] && gameBoard[i] === 'X’)
   - Depending on token placement, a win could be determined in positions 2,3,4!

@@ -21,6 +21,14 @@ const signInSuccess = function (data) {
   $('#message').text('Log In Successful')
   $('#message').css('background-color', '#8fff90')
   store.user = data.user
+  $('#log-in').hide()
+  $('#signUp').hide()
+  $('#subtitle').hide()
+  $('.game-board').show()
+  $('.reset').show()
+  $('#scores').show()
+  $('#password-button').show()
+  $('#onSignOut').show()
 }
 
 const signInFailure = function (error) {
@@ -32,6 +40,8 @@ const signInFailure = function (error) {
 const signOutSuccess = function () {
   $('#message').text('Signed out successfully')
   $('#message').css('background-color', '#8fff90')
+  $('#log-in').show()
+  $('#signUp').show()
 }
 
 const signOutFailure = function (error) {

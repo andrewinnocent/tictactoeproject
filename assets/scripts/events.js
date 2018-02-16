@@ -29,18 +29,10 @@ const onSignIn = function (event) {
   event.preventDefault()
   $('#sign-in').modal('hide')
   const data = getFormFields(this)
-  $('#log-in').hide()
-  $('#signUp').hide()
-  $('#subtitle').hide()
-  $('.game-board').show()
-  $('.reset').show()
-  $('#scores').show()
-  $('#password-button').show()
-  $('#onSignOut').show()
-  $('#onSignIn').get(0).reset()
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
+  $('#onSignIn').get(0).reset()
 }
 
 const onSignOut = function (event) {
@@ -49,8 +41,6 @@ const onSignOut = function (event) {
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
   notSignedIn()
-  $('#log-in').show()
-  $('#signUp').show()
 }
 
 const onChangePassword = function (event) {

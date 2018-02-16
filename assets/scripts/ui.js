@@ -29,6 +29,7 @@ const signInSuccess = function (data) {
   $('#scores').show()
   $('#password-button').show()
   $('#onSignOut').show()
+  console.log(data.user.token)
 }
 
 const signInFailure = function (error) {
@@ -61,10 +62,15 @@ const changePasswordFailure = function (error) {
   console.log(error)
 }
 
-const createGame = function (data) {
+const createGameSuccess = function (data) {
   $('#message').text('Create Game Successful')
   $('#message').css('background-color', '#8fff90')
-  store.games = data.game
+  store.game = data.game
+}
+
+const createGameFailure = function () {
+  $('#message').text('Create Game Failed')
+  $('#message').css('background-color', '#ff91A3')
 }
 
 module.exports = {
@@ -76,5 +82,6 @@ module.exports = {
   signOutFailure,
   changePasswordSuccess,
   changePasswordFailure,
-  createGame
+  createGameSuccess,
+  createGameFailure
 }

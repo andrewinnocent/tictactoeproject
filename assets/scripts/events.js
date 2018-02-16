@@ -53,12 +53,6 @@ const onChangePassword = function (event) {
   $('#onChangePassword').get(0).reset()
 }
 
-// NOT WORKING!
-// const onNewGame = () => {
-//   api.newGame()
-//     .then(ui.createGame)
-// }
-
 const addHandlers = () => {
   $('#onSignUp').on('submit', onSignUp)
   $('#onSignIn').on('submit', onSignIn)
@@ -143,15 +137,23 @@ const checkForWin = function () {
   }
 }
 
+const onNewGame = () => {
+  api.newGame()
+    .then(ui.createGameSuccess)
+    .catch(ui.createGameFailure)
+}
+
 // Game restart
 $('#new-game').on('click', function () {
+  console.log('runnin')
+  $('.box').attr('disabled', false) // allows buttons to be clicked on again
   for (let i = 0; i < gameBoard.length; i++) {
     $('#' + i).text('') // clears X or O in each button
-    $('.box').attr('disabled', false) // allows buttons to be clicked on again
     gameBoard[i] = '' // clears array of X & O, back to empty string
     turn = 0 // resets turn to start with X
-    $('#game-message').text('New Game Started!').css('background-color', 'yellow')
   }
+  $('#game-message').text('New Game Started!').css('background-color', 'yellow')
+  onNewGame()
 })
 
 module.exports = {

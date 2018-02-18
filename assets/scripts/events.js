@@ -89,6 +89,7 @@ let oWinTally = 1
 
 // checks for wins & locks board when game done [WORKS]
 const checkForWin = function () {
+  $('#game-message').show()
   if (// 0, 1, 2
     (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2] && gameBoard[0] === 'X') ||
     // 0, 3, 6
@@ -142,7 +143,6 @@ const onNewGame = () => {
     .then(ui.createGameSuccess)
     .catch(ui.createGameFailure)
 }
-
 // Game restart
 $('#new-game').on('click', function () {
   $('.box').attr('disabled', false) // allows buttons to be clicked on again
@@ -151,7 +151,6 @@ $('#new-game').on('click', function () {
     gameBoard[i] = '' // clears array of X & O, back to empty string
     turn = 0 // resets turn to start with X
   }
-  $('#game-message').text('New Game Started!').css('background-color', 'yellow')
   onNewGame()
 })
 

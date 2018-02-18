@@ -40,6 +40,7 @@ const signOutSuccess = function () {
   $('#message').css('background-color', '#8fff90')
   $('#log-in').show()
   $('#signUp').show()
+  $('#game-message').hide()
 }
 
 const signOutFailure = function () {
@@ -58,8 +59,9 @@ const changePasswordFailure = function () {
 }
 
 const createGameSuccess = function (data) {
-  $('#message').text('Create Game Successful')
-  $('#message').css('background-color', '#8fff90')
+  $('#game-message').show()
+  $('#game-message').text('New Game Started!')
+  $('#game-message').css('background-color', '#8fff90')
   store.game = data.game
 }
 

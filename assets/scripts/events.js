@@ -145,7 +145,6 @@ const onNewGame = () => {
 
 // Game restart
 $('#new-game').on('click', function () {
-  console.log('runnin')
   $('.box').attr('disabled', false) // allows buttons to be clicked on again
   for (let i = 0; i < gameBoard.length; i++) {
     $('#' + i).text('') // clears X or O in each button

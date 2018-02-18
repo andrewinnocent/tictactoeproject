@@ -11,10 +11,9 @@ const signUpSuccess = function (data) {
   $('#message').css('background-color', '#8fff90')
 }
 
-const signUpFailure = function (error) {
+const signUpFailure = function () {
   $('#message').text('Error on signing up')
   $('#message').css('background-color', '#ff91A3')
-  console.log(error)
 }
 // Sign-in messages
 const signInSuccess = function (data) {
@@ -29,13 +28,11 @@ const signInSuccess = function (data) {
   $('#scores').show()
   $('#password-button').show()
   $('#onSignOut').show()
-  console.log(data.user.token)
 }
 
-const signInFailure = function (error) {
+const signInFailure = function () {
   $('#message').text('Error with Log In - Try Again')
   $('#message').css('background-color', '#ff91A3')
-  console.log(error)
 }
 // Sign-out messages
 const signOutSuccess = function () {
@@ -45,10 +42,9 @@ const signOutSuccess = function () {
   $('#signUp').show()
 }
 
-const signOutFailure = function (error) {
+const signOutFailure = function () {
   $('#message').text('Error signing out')
   $('#message').css('background-color', '#ff91A3')
-  console.log(error)
 }
 // change password messages
 const changePasswordSuccess = function () {
@@ -56,10 +52,9 @@ const changePasswordSuccess = function () {
   $('#message').css('background-color', '#8fff90')
 }
 
-const changePasswordFailure = function (error) {
+const changePasswordFailure = function () {
   $('#message').text('Error changing password')
   $('#message').css('background-color', '#ff91A3')
-  console.log(error)
 }
 
 const createGameSuccess = function (data) {

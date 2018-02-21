@@ -17,23 +17,24 @@ const signUpFailure = function () {
 }
 // Sign-in messages
 const signInSuccess = function (data) {
-  $('#message').text('Log In Successful')
+  $('#message').text('Log In Successful, User ' + data.user.id)
   $('#message').css('background-color', '#8fff90')
   store.user = data.user
   $('#log-in').hide()
   $('#signUp').hide()
   $('#subtitle').hide()
-  $('.game-board').show()
   $('.reset').show()
-  $('#scores').show()
   $('#password-button').show()
   $('#onSignOut').show()
+  // $('#get-games-button').show()
+  console.log(data.user.token)
 }
 
 const signInFailure = function () {
   $('#message').text('Error with Log In - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
+
 // Sign-out messages
 const signOutSuccess = function () {
   $('#message').text('Signed out successfully')
@@ -57,8 +58,11 @@ const changePasswordFailure = function () {
   $('#message').text('Error changing password')
   $('#message').css('background-color', '#ff91A3')
 }
-
+// New Game
 const createGameSuccess = function (data) {
+  $('.game-board').show()
+  $('#scores').show()
+  $('#game-id').text('Game ID: ' + data.game.id)
   $('#game-message').show()
   $('#game-message').text('New Game Started!')
   $('#game-message').css('background-color', '#8fff90')
@@ -69,7 +73,30 @@ const createGameFailure = function () {
   $('#message').text('Create Game Failed')
   $('#message').css('background-color', '#ff91A3')
 }
+// Get Games
+const getGamesSuccess = function (data) {
+  // $('#game-message').show()
+  $('#games-list').text('Games for User ' + data.user.id + ': ')
+  $('#game-message').text('Games for User ' + data.user.id + ': ')
+  $('#game-message').css('background-color', '#8fff90')
+  store.game = data.game
+}
 
+const getGamesFailure = function () {
+  $('#message').text('Getting Games Failed')
+  $('#message').css('background-color', '#ff91A3')
+}
+// change password messages
+const updateGameSuccess = function (data) {
+  $('#message').text('Game updated successfully')
+  $('#message').css('background-color', '#8fff90')
+  store.game = data.game
+}
+
+const updateGameFailure = function () {
+  $('#message').text('Game update failed')
+  $('#message').css('background-color', '#ff91A3')
+}
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -80,5 +107,9 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   createGameSuccess,
-  createGameFailure
+  createGameFailure,
+  getGamesSuccess,
+  getGamesFailure,
+  updateGameSuccess,
+  updateGameFailure
 }

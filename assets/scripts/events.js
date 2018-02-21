@@ -3,16 +3,16 @@
 const api = require('./api')
 const getFormFields = require('../../lib/get-form-fields')
 const ui = require('./ui')
-// const store = require('./store')
 
 // Make messages disappear after 3-5 secs (desired)
 const notSignedIn = function () {
   $('.game-board').hide()
   $('.reset').hide()
   $('#scores').hide()
-  $('#subtitle').show().text('Log In to Play!').css('font-size', '20px').css('color', '#529bff')
+  $('#subtitle').show().text('Sign Up and/or Log In to Play!').css('font-size', '20px').css('color', '#529bff')
   $('#password-button').hide()
   $('#onSignOut').hide()
+  // $('#get-games-button').hide()
 }
 
 const onSignUp = function (event) {
@@ -53,14 +53,59 @@ const onChangePassword = function (event) {
   $('#onChangePassword').get(0).reset()
 }
 
+const onGetGames = function (event) {
+  // event.preventDefault()
+  console.log('clicked')
+  // $('#get-games').modal('hide')
+  // const data = getFormFields(event.target)
+  api.getGames()
+    .then(ui.getGamesSuccess)
+    .catch(ui.getGamesFailure)
+}
+
+const onNewGame = () => {
+  api.newGame()
+    .then(ui.createGameSuccess)
+    .catch(ui.createGameFailure)
+}
+// Game restart
+$('#new-game').on('click', function () {
+  $('.box').attr('disabled', false) // allows buttons to be clicked on again
+  for (let i = 0; i < gameBoard.length; i++) {
+    $('#' + i).text('') // clears X or O in each button
+    gameBoard[i] = '' // clears array of X & O, back to empty string
+    turn = 0 // resets turn to start with X
+  }
+  onNewGame()
+})
+
+const onUpdateGame = (data) => {
+  api.updateGame(data)
+    .then(ui.updateGameSuccess)
+    .catch(ui.updateGameFailure)
+}
+
 const addHandlers = () => {
   $('#onSignUp').on('submit', onSignUp)
   $('#onSignIn').on('submit', onSignIn)
   $('#onSignOut').click(onSignOut)
   $('#onChangePassword').on('submit', onChangePassword)
+  $('#onGetGames').on('submit', onGetGames)
 }
 
+// Game Logic
 const gameBoard = ['', '', '', '', '', '', '', '', '']
+
+// data object sent to API PATCH to update game play
+const data = {
+  'game': {
+    'cell': {
+      'index': '',
+      'value': ''
+    },
+    'over': false
+  }
+}
 
 // Player turns
 let turn = 0
@@ -70,20 +115,25 @@ const boxSelect = () => {
       if (turn % 2 === 0) { // even turns are X, odd turns are O
         $(this).text('X') // "this" is the grid space clicked on and X is added to it
         gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
+        // store.game.cells[this.id] = 'X'
         $(this).attr('disabled', true) // disables button once selected
       } else {
         $(this).text('O')
         gameBoard[this.id] = 'O'
+        // store.game.cell[this.id] = 'O'
         $(this).attr('disabled', true) // disables button once selected
       }
+      data.game.cell.index = this.id
+      data.game.cell.value = gameBoard[this.id]
       checkForWin()
+      onUpdateGame(data) // each move is passed through api.update game, thereby updating store.game
+      // console.log(data)
       turn++ // adds 1 to the turn being played
     })
   }
 }
 
-// Tally wins/losses
-
+// Tally wins
 let xWinTally = 1
 let oWinTally = 1
 
@@ -107,6 +157,7 @@ const checkForWin = function () {
     // 6, 7, 8
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'X')) {
     $('#x-score').text(xWinTally++)
+    data.game.over = true // updates data.game.over to true when X wins
     $('.box').attr('disabled', true) // disables board if X wins
     $('#game-message').text('X wins!')
     $('#game-message').css('background-color', '#a5bcff')
@@ -127,10 +178,12 @@ const checkForWin = function () {
     // 6, 7, 8
     (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8] && gameBoard[6] === 'O')) {
     $('#o-score').text(oWinTally++)
+    data.game.over = true // updates data.game.over to true when O wins
     $('.box').attr('disabled', true) // disables board if O wins
     $('#game-message').text('O wins!')
     $('#game-message').css('background-color', '#a5bcff')
   } else if (gameBoard.includes('') === false) {
+    data.game.over = true // updates data.game.over to true when a draw
     $('#game-message').text('Draw game!')
     $('#game-message').css('background-color', '#ff00ff')
   } else {
@@ -138,24 +191,9 @@ const checkForWin = function () {
   }
 }
 
-const onNewGame = () => {
-  api.newGame()
-    .then(ui.createGameSuccess)
-    .catch(ui.createGameFailure)
-}
-// Game restart
-$('#new-game').on('click', function () {
-  $('.box').attr('disabled', false) // allows buttons to be clicked on again
-  for (let i = 0; i < gameBoard.length; i++) {
-    $('#' + i).text('') // clears X or O in each button
-    gameBoard[i] = '' // clears array of X & O, back to empty string
-    turn = 0 // resets turn to start with X
-  }
-  onNewGame()
-})
-
 module.exports = {
   boxSelect,
   addHandlers,
-  notSignedIn
+  notSignedIn,
+  onUpdateGame
 }

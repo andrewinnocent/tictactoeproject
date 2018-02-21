@@ -129,22 +129,23 @@
 </div>
 
 <p id="subtitle"></p>
+<p id="game-id"></p>
 
 <table class="game-board">
   <tr class="table-row">
-    <td><button type="button" id="0" class="btn btn-outline-primary box"></button></td>
-    <td><button type="button" id="1" class="btn btn-outline-primary box"></button></td>
-    <td><button type="button" id="2" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="0" id="0" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="1" id="1" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="2" id="2" class="btn btn-outline-primary box"></button></td>
   </tr>
   <tr class="table-row">
-    <td><button type="button" id="3" class="btn btn-outline-primary box"></button></td>
-    <td><button type="button" id="4" class="btn btn-outline-primary box"></button></td>
-    <td><button type="button" id="5" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="3" id="3" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="4" id="4" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="5" id="5" class="btn btn-outline-primary box"></button></td>
   </tr>
   <tr class="table-row">
-    <td><button type="button" id="6" class="btn btn-outline-primary box"></button></td>
-    <td><button type="button" id="7" class="btn btn-outline-primary box"></button></td>
-    <td><button type="button" id="8" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="6" id="6" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="7" id="7" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="8" id="8" class="btn btn-outline-primary box"></button></td>
   </tr>
 </table>
         </div>
@@ -152,6 +153,29 @@
         <button type="button" id="new-game" class="btn btn-info new-game">New Game</button>
       </div>
 
-    </body>
+      <!-- Button trigger modal -->
+      <button type="button" id="get-games-button" class="btn btn-success" data-toggle="modal" data-target="#get-games">
+        Past Games
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="get-games" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Games Played</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="games-list">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </html>

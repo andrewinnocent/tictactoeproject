@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sh scripts/game-create.sh
+# sh scripts/game-show.sh
 
 curl "http://tic-tac-toe.wdibos.com/games/{$ID}" \
   --include \

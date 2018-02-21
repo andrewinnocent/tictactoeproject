@@ -54,7 +54,7 @@ const onChangePassword = function (event) {
 }
 
 const onGetGames = function (event) {
-  // event.preventDefault()
+  event.preventDefault()
   console.log('clicked')
   // $('#get-games').modal('hide')
   // const data = getFormFields(event.target)
@@ -90,7 +90,7 @@ const addHandlers = () => {
   $('#onSignIn').on('submit', onSignIn)
   $('#onSignOut').click(onSignOut)
   $('#onChangePassword').on('submit', onChangePassword)
-  $('#onGetGames').on('submit', onGetGames)
+  $('#get-games-button').on('click', onGetGames)
 }
 
 // Game Logic

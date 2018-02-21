@@ -75,11 +75,10 @@ const createGameFailure = function () {
 }
 // Get Games
 const getGamesSuccess = function (data) {
-  // $('#game-message').show()
-  $('#games-list').text('Games for User ' + data.user.id + ': ')
-  $('#game-message').text('Games for User ' + data.user.id + ': ')
-  $('#game-message').css('background-color', '#8fff90')
+  $('#games-list').text('Total Games Played for User ' + store.user.id + ': ' + data.games.length)
   store.game = data.game
+  console.log(data)
+  console.log(data.games.length)
 }
 
 const getGamesFailure = function () {

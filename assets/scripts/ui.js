@@ -7,12 +7,12 @@ const store = require('./store')
 
 // Sign-up messages
 const signUpSuccess = function (data) {
-  $('#message').text('Signed up successfully')
+  $('#message').text('Signed Up Successfully')
   $('#message').css('background-color', '#8fff90')
 }
 
 const signUpFailure = function () {
-  $('#message').text('Error on signing up')
+  $('#message').text('Error on Signing Up - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
 // Sign-in messages
@@ -45,7 +45,7 @@ const signOutSuccess = function () {
 }
 
 const signOutFailure = function () {
-  $('#message').text('Error Signing Out')
+  $('#message').text('Error Signing Out - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
 // change password messages
@@ -55,7 +55,7 @@ const changePasswordSuccess = function () {
 }
 
 const changePasswordFailure = function () {
-  $('#message').text('Error Changing Password')
+  $('#message').text('Error Changing Password - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
 // New Game
@@ -70,7 +70,7 @@ const createGameSuccess = function (data) {
 }
 
 const createGameFailure = function () {
-  $('#message').text('Create Game Failed')
+  $('#message').text('Create Game Failed - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
 // Get Games
@@ -80,7 +80,7 @@ const getGamesSuccess = function (data) {
 }
 
 const getGamesFailure = function () {
-  $('#message').text('Getting Games Failed')
+  $('#message').text('Getting Games Failed - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
 // change password messages
@@ -91,7 +91,7 @@ const updateGameSuccess = function (data) {
 }
 
 const updateGameFailure = function () {
-  $('#message').text('Game Update Failed')
+  $('#message').text('Game Update Failed - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
 module.exports = {

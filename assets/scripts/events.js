@@ -12,7 +12,7 @@ const notSignedIn = function () {
   $('#subtitle').show().text('Sign Up and/or Log In to Play!').css('font-size', '20px').css('color', '#529bff')
   $('#password-button').hide()
   $('#onSignOut').hide()
-  // $('#get-games-button').hide()
+  $('#get-games-button').hide()
 }
 
 const onSignUp = function (event) {
@@ -55,9 +55,6 @@ const onChangePassword = function (event) {
 
 const onGetGames = function (event) {
   event.preventDefault()
-  console.log('clicked')
-  // $('#get-games').modal('hide')
-  // const data = getFormFields(event.target)
   api.getGames()
     .then(ui.getGamesSuccess)
     .catch(ui.getGamesFailure)
@@ -115,7 +112,6 @@ const boxSelect = () => {
       if (turn % 2 === 0) { // even turns are X, odd turns are O
         $(this).text('X') // "this" is the grid space clicked on and X is added to it
         gameBoard[this.id] = 'X' // X is placed in the specific index that matched the grid space clicked on
-        // store.game.cells[this.id] = 'X'
         $(this).attr('disabled', true) // disables button once selected
       } else {
         $(this).text('O')
@@ -127,7 +123,6 @@ const boxSelect = () => {
       data.game.cell.value = gameBoard[this.id]
       checkForWin()
       onUpdateGame(data) // each move is passed through api.update game, thereby updating store.game
-      // console.log(data)
       turn++ // adds 1 to the turn being played
     })
   }

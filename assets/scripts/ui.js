@@ -26,8 +26,7 @@ const signInSuccess = function (data) {
   $('.reset').show()
   $('#password-button').show()
   $('#onSignOut').show()
-  // $('#get-games-button').show()
-  console.log(data.user.token)
+  $('#get-games-button').show()
 }
 
 const signInFailure = function () {
@@ -42,6 +41,7 @@ const signOutSuccess = function () {
   $('#log-in').show()
   $('#signUp').show()
   $('#game-message').hide()
+  $('#game-id').hide()
 }
 
 const signOutFailure = function () {
@@ -75,10 +75,8 @@ const createGameFailure = function () {
 }
 // Get Games
 const getGamesSuccess = function (data) {
-  $('#games-list').text('Total Games Played for User ' + store.user.id + ': ' + data.games.length)
+  $('#games-list').text('Total Games for User ' + store.user.id + ': ' + data.games.length).css('font-weight', 'bold')
   store.game = data.game
-  console.log(data)
-  console.log(data.games.length)
 }
 
 const getGamesFailure = function () {

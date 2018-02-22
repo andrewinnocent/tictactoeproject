@@ -36,7 +36,7 @@ const signInFailure = function () {
 
 // Sign-out messages
 const signOutSuccess = function () {
-  $('#message').text('Signed out successfully')
+  $('#message').text('Signed Out Successfully')
   $('#message').css('background-color', '#8fff90')
   $('#log-in').show()
   $('#signUp').show()
@@ -45,17 +45,17 @@ const signOutSuccess = function () {
 }
 
 const signOutFailure = function () {
-  $('#message').text('Error signing out')
+  $('#message').text('Error Signing Out')
   $('#message').css('background-color', '#ff91A3')
 }
 // change password messages
 const changePasswordSuccess = function () {
-  $('#message').text('Changed password in successfully')
+  $('#message').text('Changed Password Successfully')
   $('#message').css('background-color', '#8fff90')
 }
 
 const changePasswordFailure = function () {
-  $('#message').text('Error changing password')
+  $('#message').text('Error Changing Password')
   $('#message').css('background-color', '#ff91A3')
 }
 // New Game
@@ -85,13 +85,13 @@ const getGamesFailure = function () {
 }
 // change password messages
 const updateGameSuccess = function (data) {
-  $('#message').text('Game updated successfully')
+  $('#message').text('Game Updated Successfully')
   $('#message').css('background-color', '#8fff90')
   store.game = data.game
 }
 
 const updateGameFailure = function () {
-  $('#message').text('Game update failed')
+  $('#message').text('Game Update Failed')
   $('#message').css('background-color', '#ff91A3')
 }
 module.exports = {

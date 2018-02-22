@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic-Tac-Toe Project - Andrew Innocent</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid">
+<!-- Nav with [logo], sign-in, sign-up options -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> <!--ADD DEPLOYED LINK ONCE DONE!-->
+        <img alt="Brand" src="https://i.imgur.com/Rkx5e7t.png?1" id="logo">
+      </a>
+      <div class="navbar-header pull-right">
+
+        <!-- Alert messages for sign-up/in/out/changepswd actions -->
+        <p class="navbar-text" id="message"></p>
+
+        <!-- Button trigger for change-password modal -->
+        <button type="button" id="password-button"class="btn btn-warning navbar-btn" data-toggle="modal" data-target="#change-password">
+          Change Password
+        </button>
+        <!-- Modal change-password -->
+        <div class="modal fade" id="change-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="change-password-label">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="form-inline" id="onChangePassword">
+                  <div class="form-group">
+                    <label for="inputPassword">Old Password</label>
+                    <input type="password" class="form-control" name="passwords[old]" placeholder="old password">
+                    <label for="inputPassword">New Password</label>
+                    <input type="password" class="form-control" name="passwords[new]" placeholder="new password">
+                  <button type="submit" class="btn btn-default">Change Password</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- Button trigger for sign-in modal -->
+        <button type="button" id="log-in" class="btn btn-inverse navbar-btn" data-toggle="modal" data-target="#sign-in">
+          Log In
+        </button>
+        <!-- Modal sign-in -->
+        <div class="modal fade" id="sign-in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="sign-in-label">Log In to Play!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="form-inline" id="onSignIn">
+                  <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" name="credentials[email]" placeholder="your@email.com">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" name="credentials[password]" placeholder="password">
+                  <button type="submit" class="btn btn-default">Log In!</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- Button trigger for sign-up modal -->
+        <button type="button" id="signUp" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#sign-up">
+          Sign Up
+        </button>
+        <!-- Modal sign-up -->
+        <div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="sign-up-label">Sign Up to Play!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="form-inline" id="onSignUp">
+                  <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" name="credentials[email]" placeholder="example@email.com">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" name="credentials[password]" placeholder="password">
+                  <button type="submit" class="btn btn-default">Sign Up!</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sign out button -->
+        <button type="button" id="onSignOut" class="btn btn-danger">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+<!-- Game -->
+      <h1>Tic-Tac-Toe!</h1>
+      <!-- Alert messages for sign-up/in/out/changepswd actions -->
+      <p id="game-message"></p>
+
+
+<!-- Container for gameBoard -->
+<!-- Desired "play" button overlaid on gameBoard triggering sign-in, sign-up options -->
+      <div class="container">
+
+<div id="scores">
+<p>X wins: <span id="x-score">0</span></p>
+<p>O wins: <span id="o-score">0</span></p>
+</div>
+
+<p id="subtitle"></p>
+<p id="game-id"></p>
+
+<table class="game-board">
+  <tr class="table-row">
+    <td><button type="button" data-cell-index="0" id="0" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="1" id="1" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="2" id="2" class="btn btn-outline-primary box"></button></td>
+  </tr>
+  <tr class="table-row">
+    <td><button type="button" data-cell-index="3" id="3" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="4" id="4" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="5" id="5" class="btn btn-outline-primary box"></button></td>
+  </tr>
+  <tr class="table-row">
+    <td><button type="button" data-cell-index="6" id="6" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="7" id="7" class="btn btn-outline-primary box"></button></td>
+    <td><button type="button" data-cell-index="8" id="8" class="btn btn-outline-primary box"></button></td>
+  </tr>
+</table>
+        </div>
+      <div class="reset">
+        <button type="button" id="new-game" class="btn btn-info new-game">New Game</button>
+      </div>
+
+      <!-- Button trigger modal -->
+      <button type="button" id="get-games-button" class="btn btn-success" data-toggle="modal" data-target="#get-games">
+        Total Games
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="get-games" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="games-modal">Total Games Played</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="games-list">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</html>
